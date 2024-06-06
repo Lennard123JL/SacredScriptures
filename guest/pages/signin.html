@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">	
+		<title>Sacred Scriptures</title>
+		<link href="fonts/novecento-font/novecento-font.css" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<div class="site-content">
+			<header class="site-header">
+				<div class="container">
+					<a href="../pages/index.html" class="branding">
+						<img src="../images/logo.png" alt="" class="logo">
+					</a>
+					<div class="main-navigation">
+						<li class="menu-item"><a href="../pages/index.html" class="nav-link">Home</a></li>
+						<li class="menu-item"><a href="../pages/old_new_testaments.html" class="nav-link">Testaments</a></li>
+						<li class="menu-item dropdown" onclick="toggleDropdown(this)">
+							<a href="#" class="dropdown-toggle nav-link">Languages</a>
+							<ul class="dropdown-menu">
+								<li><a href="#" onclick="selectLanguage('english')">English</a></li>
+								<li class="dropdown-submenu">
+									<a href="#" class="dropdown-toggle nav-link">Tagalog</a>
+									<ul class="dropdown-menu">
+										<li><a href="../pages/languages/Tagalog.html" onclick="selectLanguage('tagalog')">Tagalog</a></li>
+										 										
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="./testimonies.html" class="nav-link">Testimonies Feed</a></li>
+						<li class="menu-item"><a href="./help-support.html" class="nav-link">Help and Support</a></li>
+						<li class="menu-item dropdown" onclick="toggleDropdown(this)">
+				
+							<a href="#" class="dropdown-toggle nav-link">Sign In</a>
+							<ul class="dropdown-menu">
+								<li><a href="../../guest/pages/signup.html">Sign Up</a></li>
+								<li><a href="../../guest/pages/index.html">Guest</a></li>
+
+							</ul>
+						</li>
+					</div>
+				</div>
+			</header>
+		</div>
+		<br> <br><br> <br><br> <br><br> <br>
+   <div class="container login-container">
+    <h2 class="login-header">Sign In</h2>
+    <form id="signin-form" action="./index.html" method="post" onsubmit="signIn(); return false;" class="login-form">
+        <div class="input-group login-input-group">
+            <label for="username" class="login-label">Username</label>
+            <input type="text" id="username" name="username" class="login-input" required>
+        </div>
+        <div class="input-group login-input-group">
+            <label for="password" class="login-label">Password</label>
+            <input type="password" id="password" name="password" class="login-input" required>
+        </div>
+        <button type="submit" class="login-button">Sign In</button>
+    </form>
+    <div id="loading" class="loading-icon">
+        <lord-icon
+            src="https://cdn.lordicon.com/ktsahwvc.json"
+            trigger="loop"
+            style="width:100px;height:100px">
+        </lord-icon>
+    </div>
+    <div class="signup-link">
+        Don't have an account? <a href="./signup.html">Sign Up</a>
+    </div>
+</div>
+
+
+	<script src="../js/signin.js"></script>
+	<script src="../js/app.js"></script>
+	<script src="../js/language.js"></script>
+	<script src="../js/slides.js"></script>
+	<script src="../js/extra.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">	
+		<title>Sacred Scriptures</title>
+		<link href="fonts/novecento-font/novecento-font.css" rel="stylesheet" type="text/css">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../../css/tagalog.css">
+	</head> 
+	<body>
+		<div class="site-content">
+			<header class="site-header">
+				<div class="container">
+					<a href="./tagalog.html" class="branding">
+						<img src="../../images/logo.png" alt="" class="logo">
+					</a>
+					<div class="main-navigation">
+						<li class="menu-item"><a href="./Tagalog.html" class="nav-link">Home</a></li>
+						<li class="menu-item"><a href="../../pages/languages/tagalogcat.html" class="nav-link">Testaments</a></li>
+						<li class="menu-item dropdown" onclick="toggleDropdown(this)">
+							<a href="#" class="dropdown-toggle nav-link">Languages</a>
+							<ul class="dropdown-menu">
+								<li><a href="../index.html" onclick="selectLanguage('english')">English</a></li>
+								<li class="dropdown-submenu">
+									<a href="#" class="dropdown-toggle nav-link">Filipino</a>
+									<ul class="dropdown-menu">
+										<li><a href="./Tagalog.html" onclick="selectLanguage('tagalog')">Tagalog</a></li>
+									
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="menu-item"><a href="/pages/testimonies.html" class="nav-link">Testimonies Feed</a></li>
+						<li class="menu-item"><a href="./help-support.html" class="nav-link">Help and Support</a></li>
+						<li class="menu-item dropdown" onclick="toggleDropdown(this)">
+							<a href="#" class="dropdown-toggle nav-link" style="position: relative;">
+								<a href="#" class="dropdown-toggle nav-link user-icon-container">
+									<img src="../../images/user.jpg" alt="Guest Mode" class="user-icon">
+								</a>							
+								<ul class="dropdown-menu">
+								<li><a href="/pages/signin.html">Sign In</a></li>
+								<li><a href="../../pages/signup.html">Sign Up</a></li>
+								<li><a href="../../pages/index.html">Exit</a></li>
+							</ul>
+						</li>
+					</div>
+				</div>
+			</header>
+		</div>
+		
+			<div class="hero">
+				<ul class="slides">
+				  <li data-bg-image="../../images/slide-1.jpg" class="active">
+					<div class="container">
+					  <div class="slide-content">
+						<small class="slide-subtitle">Efeso 5:15-16</small>
+						<h2 class="slide-title">"Kaya't mag-ingat kayo kung paano kayo namumuhay. Mamuhay kayong tulad ng matatalino at di tulad ng mga mangmang. Samantalahin ninyo ang bawat pagkakataon na kayo'y makagawa ng mabuti sapagkat punung-puno ng kasamaan ang daigdig ngayon."</h2>
+					  </div>
+					</div>
+				  </li>
+				  <li data-bg-image="../../images/slide-1.jpg">
+					<div class="container">
+					  <div class="slide-content">
+						<small class="slide-subtitle">Awit 68:19</small>
+						<h2 class="slide-title">"Purihin ang Panginoon, ang Diyos nating nagliligtas, dinadala araw-araw, ang pasanin nating hawak. (Selah) Ang ating Diyos ay isang Diyos na ang gawa ay magligtas, si Yahweh ang Panginoon, Panginoon nating lahat! Sa bingit ng kamataya'y hinahango tayo agad."</h2>
+					</div>
+				  </li>
+				  <li data-bg-image="../../images/slide-1.jpg">
+					<div class="container">
+					  <div class="slide-content">
+						<small class="slide-subtitle">Mga Awit 121:7-8</small>
+						<h2 class="slide-title">"Si Yahweh ang siyang sa iyo'y mag-iingat, sa mga panganib, ika'y ililigtas. Si Yahweh ang siyang sa iyo'y mag-iingat saanman naroon, ika'y iingatan, di ka maaano kahit na kailan."</h2>
+					  </div>
+					</div>
+				  </li>
+				</ul>
+			  </div>
+		
+				<main class="main-content">
+					<div class="fullwidth-block">
+						<div class="container">
+							<h2 class="section-title">Recent Verse</h2>
+							<div class="row">
+								<div class="col-md-3 col-sm-6">
+									<div class="news">
+										<img class="news-image" src="../../images/tagalog1.jpg">
+										<h3 class="news-title"><a href="#">ROMANS 12:21</a></h3>
+										<small class="date"><i class="fa fa-calendar"></i>20 may 2024</small>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-6">
+									<div class="news">
+										<img class="news-image" src="../../images/tagalog2.jpg">
+										<h3 class="news-title"><a href="#">ROMA 12:12</a></h3>
+										<small class="date"><i class="fa fa-calendar"></i>21 may 2024</small>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-6">
+									<div class="news">
+										<img class="news-image" src="../../images/tagalog3.jpg">
+										<h3 class="news-title"><a href="#">AWIT 119:11</a></h3>
+										<small class="date"><i class="fa fa-calendar"></i>22 may 2024</small>
+									</div>
+								</div>
+								<div class="col-md-3 col-sm-6">
+									<div class="news">
+										<img class="news-image" src="../../images/tagalog4.jpg">
+										<h3 class="news-title"><a href="#">MGA KAWIKAAN 21:21</a></h3>
+										<small class="date"><i class="fa fa-calendar"></i>23 may 2024</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+				</main>
+				
+				<!-- Popup Structure -->
+				<div id="overlay" class="overlay"></div>
+				<div id="popup" class="popup1">
+					<span id="close-popup" class="close-popup">&times;</span>
+					<img id="popup-img" src="" alt="Popup Image">
+				</div>
+				
+			</main> 
+			<footer class="site-footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="widget">
+								<h3 class="widget-title">DAILY BIBLE VERSE</h3>
+								<p>Sapagka't gayon na lamang ang pagsinta ng Dios sa sanglibutan, na ibinigay niya ang kaniyang bugtong na Anak, upang ang sinomang sa kaniya'y sumampalataya ay huwag mapahamak, kundi magkaroon ng buhay na walang hanggan. - Juan 3:16</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="widget">
+								<h3 class="widget-title">BIBLE STUDY RESOURCES</h3>
+								<ul>
+									<li><a href="#">Bible Commentaries</a></li>
+									<li><a href="#">Concordances</a></li>
+									<li><a href="#">Study Guides</a></li>
+								</ul>
+							</div>
+							<div class="widget">
+								<h3 class="widget-title">DEVOTIONAL ARTICLES</h3>
+								<ul>
+									<li><a href="#">Five Ways to Grow Closer to God</a></li>
+									<li><a href="#">Finding Peace in Times of Trouble</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="widget">
+								<h3 class="widget-title">CONNECT WITH US</h3>
+								<ul class="social-media-icons">
+									<li><a href="#"><i class="fa fa-facebook">sacredscriptures@gmail.com</i></a></li>
+									<li><a href="#"><i class="fa fa-twitter">facebook.com/sacredscriptures</i></a></li>
+									<li><a href="#"><i class="fa fa-instagram">youtube.com/sacredscriptures</i></a></li>
+								</ul>
+								<p class="colophon">Copyright 2024 Sacred Scriptures. All right reserved</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			
+		</div>
+		<script src="../../js/app.js"></script>
+		<script src="../../js/language.js"></script>
+		<script src="../../js/slides.js"></script>
+		<script src="../../js/extra.js"></script>
+	</body>
+</html>

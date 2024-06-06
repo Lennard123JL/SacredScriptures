@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">	
+	<title>Sacred Scriptures</title>
+	<link href="fonts/novecento-font/novecento-font.css" rel="stylesheet" type="text/css">
+	<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../css/style.css">
+	<style>
+		#post-button {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			background-color: #976e06;
+			color: white;
+			border: none;
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			font-size: 16px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			cursor: pointer;
+		}
+
+		#post-form-container {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #f2f2f2;
+			border-radius: 50px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+			width: 80%;
+			border: 2px solid gray;
+			border-width: 50%;
+			max-width: 600px;
+			padding: 20px;
+			z-index: 1000;
+			opacity: 0;
+			transition: opacity 0.3s ease, transform 0.3s ease;
+		}
+
+		#post-form-container.show {
+			display: block;
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		#post-form-container input[type="text"], #post-form-container textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		#post-form-container button {
+			background-color: #007bff;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		#post-form-container button.close-btn {
+			background-color: #dc3545;
+		}
+
+		.post {
+			border: 1px solid #ccc;
+			border-radius: 15px;
+			padding: 20px;
+			margin-bottom: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			position: relative;
+		}
+
+		.post-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.post-header img {
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+		}
+
+		.post-header .post-author {
+			flex-grow: 1;
+		}
+
+		.bookmark-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: none;
+			border: none;
+			cursor: pointer;
+							
+		}
+
+		.post-content {
+			margin-top: 10px;
+		}
+
+		.post-footer {
+			margin-top: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.comments {
+			margin-top: 10px;
+		}
+
+		.comment {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.comment img {
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			margin-right: 10px;
+		}
+
+		.comment-input {
+			display: flex;
+			align-items: center;
+			margin-top: 10px;
+			width: 30%;
+		}
+
+		.comment-input input {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			margin-right: 10px;
+		}
+
+		.comment-input button {
+			border: none;
+			cursor: pointer;
+			height: 5%;
+			width: 10%;
+		}
+
+		.comment-input button i {
+			font-size: 20px;
+			color: #ffffff;
+		}
+
+		.like-btn {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #e74c3c;
+		}
+	</style>
+</head>
+<body>
+	<div class="site-content">
+		<header class="site-header">
+			<div class="container">
+				<a href="../pages/index.html" class="branding">
+					<img src="../images/logo.png" alt="" class="logo">
+				</a>
+				<div class="main-navigation">
+					<li class="menu-item"><a href="../pages/index.html" class="nav-link">Home</a></li>
+					<li class="menu-item"><a href="../pages/old_new_testaments.html" class="nav-link">Testaments</a></li>
+					<li class="menu-item"><a href="./testimonies.html" class="nav-link">Testimonies Feed</a></li>
+					<li class="menu-item"><a href="./help-support.html" class="nav-link">Help and Support</a></li>
+					<li class="menu-item dropdown" onclick="toggleDropdown(this)">
+						<a href="#" class="dropdown-toggle nav-link" style="position: relative;">
+							<a href="#" class="dropdown-toggle nav-link user-icon-container">
+								<img src="../images/user.jpg" alt="Guest Mode" class="user-icon">
+							</a>						<ul class="dropdown-menu">
+							<li><a href="../../pages/signin.html">Sign In</a></li>
+							<li><a href="../../pages/signup.html">Sign Up</a></li>
+						</ul>
+					</li>
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<button id="post-button"><b>Post +</b></button>
+
+	<div id="post-form-container">
+		<form id="post-form">
+			<h2>Create a Post</h2>
+			<label for="post-title">Title:</label>
+			<input type="text" id="post-title" name="post-title" placeholder="Type here...">
+			<label for="post-content">Content:</label>
+			<textarea id="post-content" name="post-content" rows="5" placeholder="Type here..."></textarea>
+			<button type="submit">Submit</button>
+			<button type="button" class="close-btn" onclick="togglePostForm()">Cancel</button>
+		</form>
+	</div>
+
+	<div class="hero1"></div>
+
+	<main class="main-content">
+		<div class="fullwidth-block">
+			<div class="container">
+				<h2 class="section-title"><b>Testimonies Feed</b></h2>
+				<!-- First Post -->
+				<div class="post">
+					<div class="post-header">
+						<img src="../images/ben.jpg" alt="Prakash">
+						<div class="post-author">KursNine <small class="post-date">- January 5, 2024</small></div>
+						<button class="bookmark-btn"><i class="fa fa-bookmark"></i></button>
+					</div>
+					<div class="post-content">
+						<h3 class="post-title"><b>Now The Time Has Come</b></h3>
+						<p>A few years ago, I was desperately in need of a job with no talent, no abilities, poor memory. An old woman comes to our home and prays for us and God’s word was “don’t rush but wait”, so I waited with patience by the grace of God, pursing my masters in parallel. I was so frustrated that my prayers were not answered but God who gives us faith has given me faith to hold to his word. I always had this doubt. God is always insisting to me to wait. Will he ever say something different? But one final day God’s word through a gifted person was “now the time has come, I have appointed you as a distributor”. Now the question arises what should I distribute, even God answered that through the gifted person (gifts of Holy Spirit). Not only that God also blessed me talents and gifts for my survival. Praying to God without ceasing will give us answers to all questions, our grief, problems, or anything. Amen</p>
+					</div>
+					<div class="post-footer">
+						<button class="like-btn"><i class="fa fa-thumbs-up"></i> Like</button>
+						<button class="comment-btn" onclick="toggleComments(this)"><i class="fa fa-comments"></i> Comments</button>
+					</div>
+					<div class="comments" style="display:none;">
+						<div class="comment">
+							<img src="../images/heal_dog.jpg" alt="mira">
+							<div class="comment-author">mira : Amen! Thanks for sharing your testimony.</div>
+							<p class="comment-content"></p>
+						</div>
+						<div class="comment-input">
+							<input type="text" id="comment-text" placeholder="Write a comment...">
+							<button id="send-comment-btn" onclick="sendComment()"><i class="fa fa-paper-plane">></i></button>
+						</div>
+						
+					</div>
+				</div>
+
+<!-- Second Post -->
+<div class="post">
+    <div class="post-header">
+        <img src="../images/barbie.jpg" alt="Prakash">
+        <div class="post-author">Max <small class="post-date">- February 6, 2024</small></div>
+        <button class="bookmark-btn"><i class="fa fa-bookmark"></i></button>
+    </div>
+    <div class="post-content">
+        <h3 class="post-title"><b>A Journey of Hope</b></h3>
+        <p>Follow along as individuals share their remarkable journeys filled with hope, perseverance, and the unwavering belief in a higher purpose. Let their stories inspire you to find light in the darkest of times.</p>
+    </div>
+    <div class="post-footer">
+        <button class="like-btn"><i class="fa fa-thumbs-up"></i> Like</button>
+        <button class="comment-btn" onclick="toggleComments(this)"><i class="fa fa-comments"></i> Comments</button>
+    </div>
+    <div class="comments" style="display:none;">
+        <div class="comment">
+            <img src="../images/woody.jpg" alt="mira">
+            <div class="comment-author">Choco : Amen! Thanks for sharing your testimony.</div>
+        </div>
+        <div class="comment-input">
+			<input type="text" id="comment-text" placeholder="Write a comment...">
+			<button id="send-comment-btn" onclick="sendComment()"><i class="fa fa-paper-plane">></i></button>
+		</div>
+		
+	</div>
+</div>
+
+
+
+<!-- Third Post -->
+<div class="post">
+	<div class="post-header">
+		<img src="../images/dora.png" alt="Prakash">
+		<div class="post-author">Samantha <small class="post-date">- August 23, 2024</small></div>
+		<button class="bookmark-btn"><i class="fa fa-bookmark"></i></button>
+	</div>
+	<div class="post-content">
+		<h3 class="post-title"><b>Miracles Unveiled</b></h3>
+		<p>Discover the miracles that unfold in the lives of ordinary people, revealing the extraordinary power of faith and divine intervention. Prepare to be moved by tales of resilience and divine grace.</p>
+	</div>
+	<div class="post-footer">
+		<button class="like-btn"><i class="fa fa-thumbs-up"></i> Like</button>
+		<button class="comment-btn" onclick="toggleComments(this)"><i class="fa fa-comments"></i> Comments</button>
+	</div>
+	<div class="comments" style="display:none;">
+		<div class="comment">
+			<img src="../images/moskov.png" alt="mira">
+			<div class="comment-author">Zel : God is good.</div>
+			<p class="comment-content"></p>
+		</div>
+		<div class="comment-input">
+			<input type="text" id="comment-text" placeholder="Write a comment...">
+			<button id="send-comment-btn" onclick="sendComment()"><i class="fa fa-paper-plane">></i></button>
+		</div>
+		
+	</div>
+</div>
+
+<!-- Fourth Post -->
+<div class="post">
+	<div class="post-header">
+		<img src="../images/moskov.png" alt="Prakash">
+		<div class="post-author">Choco<small class="post-date">- September 1, 2024</small></div>
+		<button class="bookmark-btn"><i class="fa fa-bookmark"></i></button>
+	</div>
+	<div class="post-content">
+		<h3 class="post-title"><b>Testimonies of Transformation</b></h3>
+		<p>Witness the transformative power of faith as individuals share their personal testimonies of redemption, healing, and spiritual awakening. These stories serve as beacons of hope in a world of uncertainty.</p>
+	</div>
+	<div class="post-footer">
+		<button class="like-btn"><i class="fa fa-thumbs-up"></i> Like</button>
+		<button class="comment-btn" onclick="toggleComments(this)"><i class="fa fa-comments"></i> Comments</button>
+	</div>
+	<div class="comments" style="display:none;">
+		<div class="comment">
+			<img src="../images/red.jpg" alt="mira">
+			<div class="comment-author">Red : God is truly powerful!</div> <br>
+			<p class="comment-content"></p>
+		</div>
+		<div class="comment-input">
+			<input type="text" id="comment-text" placeholder="Write a comment...">
+			<button id="send-comment-btn" onclick="sendComment()"><i class="fa fa-paper-plane">></i></button>
+		</div>
+		
+	</div>
+</div>
+
+<!-- Fifth Post -->
+<div class="post">
+	<div class="post-header">
+		<img src="../images/sana.jpg" alt="Prakash">
+		<div class="post-author">Minatozaki Sana <small class="post-date">- April 4, 2024</small></div>
+		<button class="bookmark-btn"><i class="fa fa-bookmark"></i></button>
+	</div>
+	<div class="post-content">
+		<h3 class="post-title"><b>Blessings Beyond Measure</b></h3>
+		<p>Explore the stories of those who have experienced blessings beyond measure, where seemingly insurmountable challenges are met with unexpected grace and divine providence. Let their stories remind you of the abundant blessings that surround us.</p>
+	</div>
+	<div class="post-footer">
+		<button class="like-btn"><i class="fa fa-thumbs-up"></i> Like</button>
+		<button class="comment-btn" onclick="toggleComments(this)"><i class="fa fa-comments"></i> Comments</button>
+	</div>
+	<div class="comments" style="display:none;">
+		<div class="comment">
+			<img src="../images/belle.jpg" alt="mira">
+			<div class="comment-author">Belle Delphine : Amen!</div>
+		</div>
+		<div class="comment-input">
+			<input type="text" id="comment-text" placeholder="Write a comment...">
+			<button id="send-comment-btn" onclick="sendComment()"><i class="fa fa-paper-plane">></i></button>
+		</div>
+		
+	</div>
+</div>
+				<!-- More posts can be added here -->
+
+			</div>
+		</div>
+	</main>
+
+	<script>
+		const postButton = document.getElementById('post-button');
+		const postFormContainer = document.getElementById('post-form-container');
+
+		postButton.addEventListener('click', () => {
+			postFormContainer.classList.toggle('show');
+		});
+
+		function togglePostForm() {
+			postFormContainer.classList.toggle('show');
+		}
+
+		function toggleComments(button) {
+			const post = button.closest('.post');
+			const comments = post.querySelector('.comments');
+			comments.style.display = comments.style.display === 'none' ? 'block' : 'none';
+		}
+
+		function sendComment() {
+    // Get the comment text from the input field
+    var commentText = document.getElementById('comment-text').value;
+
+    // Check if the comment text is not empty
+    if (commentText.trim() !== '') {
+        // Create a new comment element
+        var commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+
+        // Add the comment author and content
+        commentElement.innerHTML = `
+            <img src="../images/moskov.png" alt="mira">
+            <div class="comment-author">User :</div>
+            <p class="comment-content"> ${commentText}</p>
+        `;
+
+        // Append the new comment to the comments section
+        var commentsSection = document.querySelector('.comments');
+        commentsSection.insertBefore(commentElement, commentsSection.firstChild);
+
+        // Clear the comment input field
+        document.getElementById('comment-text').value = '';
+    }
+}
+
+
+
+function togglePostForm() {
+            const postFormContainer = document.getElementById('post-form-container');
+            if (postFormContainer.style.display === 'block') {
+                postFormContainer.style.opacity = '0';
+                setTimeout(() => {
+                    postFormContainer.style.display = 'none';
+                }, 300); // duration should match the transition duration
+            } else {
+                postFormContainer.style.display = 'block';
+                setTimeout(() => {
+                    postFormContainer.style.opacity = '1';
+                    postFormContainer.classList.add('show');
+                }, 10); // slight delay to ensure the display block takes effect
+            }
+        }
+
+        document.getElementById('post-button').addEventListener('click', togglePostForm);
+
+        document.getElementById('post-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const postTitle = document.getElementById('post-title').value;
+            const postContent = document.getElementById('post-content').value;
+
+            if (!postTitle.trim() && !postContent.trim()) {
+                alert("Both title and content are blank. Please fill in your message.");
+            } else {
+                console.log("Form submitted");
+                // Clear the form fields
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-content').value = '';
+                // Close the form
+                togglePostForm();
+                // Show success message
+                alert("Posted Successfully!");
+            }
+        });
+		
+	</script>
+	<script src="../js/app.js"></script>
+	<script src="../js/language.js"></script>
+	<script src="../js/slides.js"></script>
+	<script src="../js/extra.js"></script>
+</body>
+</html>
